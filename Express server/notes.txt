@@ -1,0 +1,55 @@
+CONCEPTS OF NODE JS AND 
+//nodemon
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+
+
+https://quickest-juniper-f9c.notion.site/2-NodeJS-and-ExpressJS-concepts-bd3a6a6cd1c64764bee7865a082fa979
+
+
+
+
+const express = require('express');
+const app = express();
+const port = 3001; // Use a different port// initializing the port with a variable
+
+app.get('/', (req, res) => { //So we're going to use the App.get method, which comes from Express,and then the path or the endpoint
+    res.send('Hi Guys'); //Now next comes an anonymous function and we can tap into the request and response.
+    //So it's written usually like this req and res and inside the curly braces, we can define what we should
+    //do once we receive this get request at this endpoint.
+    //inside this anonymous function or more importantly, we want to be able to send back a response.
+    //To do that, we use res.send.And in the body of this method we can send back a piece of text.
+});
+//here we created a listen method n specify firstly the port 
+//secondly the callback for what should happen when our server is ready to go
+//we put an anonomus function as callback
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+//method listen // 3000 is the port , port is the location of our  server
+//callback func that is going to be triggered when our server is set up
+
+
+
+We're going to try this out in our exercise so that instead of just writing a server that runs, we're
+going to add to this exercise so that our server can handle the forward slash forward slash contact
+and forward slash about endpoints, it's totally up to you what you want your server to send back on
+the home endpoint.
+And on the about endpoint, you could maybe have some info about yourself, maybe a paragraph element
+
+or an H1 or something like that.
+
+It's totally up to you how you want to do it.
+I'm going to do is copy this part of my code.
+The get method and paste it twice so that I get two more endpoints that I can add.
+So the first one is the about endpoint, and in my case, I'm just going to write an H1 called about me.
+
+And then maybe I can also have a paragraph tag saying my name is Angela, close my paragraph tag.
+
+That's all the HTML that I'm going to send over.
+And then the third endpoint is the contact endpoint.
+And in this case, I'm going to have an H1 that says contact me and I'm going to have a paragraph that
+says maybe my phone number is plus four, four, one, two, three, four, five, six, seven, eight,nine.
+And then let's close off our paragraph tag and notice how Nodemon is working hard in the background,
+noticing these changes and updating and restarting our server so we can simply go back over to our localhost
+3000.

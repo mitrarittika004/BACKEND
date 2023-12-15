@@ -1,0 +1,116 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 3000;
+1.
+Import Dependencies:
+
+Import the express framework for creating the server.
+Import body-parser to parse JSON data in the request body.
+Create Express App:
+
+Create an instance of the Express application.
+Set Port:
+
+Set the port number to 3000.
+2.
+
+app.use(bodyParser.json());
+Use Body Parser Middleware:
+Use body-parser middleware to parse JSON data in the request body.
+3.
+const todos = [];
+In-memory Storage:
+Create an in-memory array (todos) to store ToDo items.
+4.
+app.get('/todos', (req, res) => {
+  res.json(todos);
+});
+GET Route - Get All Todos:
+Define a route to handle GET requests at /todos.
+Respond with a JSON array containing all ToDo items.
+5.
+app.post('/todos', (req, res) => {
+  const { title } = req.body;
+
+  if (!title) {
+    return res.status(400).json({ error: 'Title is required' });
+  }
+
+  const newTodo = {
+    id: todos.length + 1,
+    title,
+    completed: false,
+  };
+
+  todos.push(newTodo);
+
+  res.status(201).json(newTodo);
+});
+
+POST Route - Add Todo:
+Define a route to handle POST requests at /todos.
+Extract the title from the request body.
+Validate that the title is provided; if not, respond with an error.
+Create a new ToDo object, push it to the array, and respond with the new ToDo.
+
+6.
+
+app.patch('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+
+  const todo = todos.find((item) => item.id === parseInt(id));
+
+  if (!todo) {
+    return res.status(404).json({ error: 'Todo not found' });
+  }
+
+  todo.completed = completed;
+  res.json(todo);
+});
+
+
+PATCH Route - Update Todo Completion:
+Define a route to handle PATCH requests at /todos/:id.
+Extract the id from the URL parameters and completed from the request body.
+Find the ToDo item with the specified id.
+If the ToDo item is not found, respond with an error.
+Update the completion status and respond with the modified ToDo.
+
+7
+
+app.delete('/todos/:id', (req, res) => {
+  const { id } = req.params;
+
+  const index = todos.findIndex((item) => item.id === parseInt(id));
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'Todo not found' });
+  }
+
+  todos.splice(index, 1);
+  res.json({ message: 'Todo deleted successfully' });
+});
+
+DELETE Route - Delete Todo:
+
+Define a route to handle DELETE requests at /todos/:id.
+Extract the id from the URL parameters.
+Find the index of the ToDo item with the specified id.
+If the ToDo item is not found, respond with an error.
+Remove the ToDo item from the array and respond with a success message.
+
+8.
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
+Start the Server:
+Start the Express server and listen on the specified port (3000).
+Log a message to the console indicating that the server is running.
+
+
+
+

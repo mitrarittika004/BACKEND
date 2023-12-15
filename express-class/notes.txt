@@ -1,0 +1,17 @@
+//what are doing
+
+
+
+
+
+
+
+
+
+
+Query parameters - at the end of url put (?variable)
+eg -http://localhost:2000/?n=5
+are a defined set of parameters (key-value pair) attached
+to the end of a URL used to provide additional information 
+to a web server when making requests. They are an important
+part of the URL that define specific content or actions based on the data being passed.
